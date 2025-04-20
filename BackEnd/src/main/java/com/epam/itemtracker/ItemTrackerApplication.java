@@ -1,13 +1,13 @@
-package com.example.demo;
+package com.epam.itemtracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ItemTrackerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ItemTrackerApplication.class, args);
 	}
 
 }
