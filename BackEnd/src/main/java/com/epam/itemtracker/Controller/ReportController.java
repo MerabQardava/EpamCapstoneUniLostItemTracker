@@ -39,7 +39,7 @@ public class ReportController {
             Files.write(filePath, imageFile.getBytes());
 
 
-            String imageUrl = "/uploads/" + fileName;
+            String imageUrl = fileName;
 
 
             Report report = new Report();
