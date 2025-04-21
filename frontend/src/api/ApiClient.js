@@ -5,3 +5,14 @@ export const apiClient = axios.create(
         baseURL: 'http://localhost:8080'
     }
 );
+
+apiClient.interceptors.request.use(function (config) {
+  
+    if (!config.url.endsWith('/login') && !config.url.endsWith('/register')) {
+        config.auth = {
+            username: "john_doe",
+            password: "password123",
+        };
+    }
+    return config;
+});

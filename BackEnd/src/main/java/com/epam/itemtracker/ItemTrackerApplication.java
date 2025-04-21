@@ -13,17 +13,17 @@ public class ItemTrackerApplication {
 		SpringApplication.run(ItemTrackerApplication.class, args);
 	}
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer(){
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:3000")  // Specify allowed origin
-						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")  // Specify allowed methods
-						.allowCredentials(true);  // If you want to allow credentials (cookies, authorization headers, etc.)
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer(){
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**")
+//						.allowedOrigins("http://localhost:3000")  // Specify allowed origin
+//						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+//						.allowCredentials(true);
+//			}
+//		};
+//	}
 
 }

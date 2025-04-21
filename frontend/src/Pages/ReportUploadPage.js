@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {uploadReport} from "../api/ReportApiService";
 
 const ReportUploadPage = () => {
     const [formData, setFormData] = useState({
@@ -21,25 +22,18 @@ const ReportUploadPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const payload = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
             payload.append(key, value);
         });
 
         try {
-            const res = await fetch('http://localhost:8080/reports/upload', {
-                method: 'POST',
-                body: payload,
-            });
-
-            if (res.ok) {
-                setMessage('✅ Report submitted successfully!');
-            } else {
-                setMessage('❌ Failed to submit report.');
-            }
+            await uploadReport(payload);
+            setMessage('✅ Report submitted successfully!');
         } catch (err) {
             console.error(err);
-            setMessage('⚠️ Error submitting report.');
+            setMessage('❌ Failed to submit report.');
         }
     };
 
