@@ -1,16 +1,29 @@
 import React from 'react';
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import {useAuth} from "../api/AuthContext";
 
-function NavigationComponent(props) {
+function NavigationComponent() {
+    const {isAuthenticated,logout} = useAuth();
+
+
+    console.log(isAuthenticated)
     return (
-        <Navbar bg="primary" data-bs-theme="dark">
+        <Navbar bg="primary" data-bs-theme="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="/">Lost & Found</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Lost & Found</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link href="/reports">Home</Nav.Link>
-                    <Nav.Link href="/reports/upload">Upload</Nav.Link>
+                    <Nav.Link as={Link} to="/reports">Home</Nav.Link>
+                    <Nav.Link as={Link} to="/reports/upload">Upload</Nav.Link>
                     <Nav.Link href="#pricing">Pricing</Nav.Link>
                 </Nav>
+                <div className="d-flex gap-2">
+                    {!isAuthenticated && <>
+                        <Button as={Link} to="/login" variant="outline-light">Login</Button>
+                        <Button as={Link} to="/register" variant="light">Register</Button></>
+                    }
+                    {isAuthenticated && <Button onClick={logout} variant="light">Logout</Button>}
+                </div>
             </Container>
         </Navbar>
     );

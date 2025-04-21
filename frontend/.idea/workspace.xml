@@ -5,20 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f469905-89f9-4eba-b6d2-fc2c375527e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/MyUserDetailsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/UserPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Pages/RegisterPage.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/AuthApiService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/DTOs/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/LoginPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Pages/ProtectedRoute.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/AuthContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Config/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/ItemTrackerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/ItemTrackerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Repositories/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ReportUploadPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ReportUploadPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/NavigationComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavigationComponent.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/ApiClient.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ApiClient.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ReportApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ReportApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/AuthApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/AuthApiService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JSX File" />
         <option value="JavaScript File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -94,7 +94,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745169703076</updated>
       <workItem from="1745169704076" duration="8393000" />
-      <workItem from="1745239599080" duration="6074000" />
+      <workItem from="1745239599080" duration="13805000" />
     </task>
     <servers />
   </component>

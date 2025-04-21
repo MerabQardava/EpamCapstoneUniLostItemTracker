@@ -1,5 +1,7 @@
 package com.epam.itemtracker.Controller;
 
+import com.epam.itemtracker.DTOs.UserDTO;
+import com.epam.itemtracker.Entity.LoginRequest;
 import com.epam.itemtracker.Entity.User;
 import com.epam.itemtracker.Services.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -23,21 +25,51 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-//    @PostMapping("/login")
-//    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
-//        try{
-//            boolean isAuthenticated = userService.authenticate(loginRequest.getUsername(),loginRequest.getPassword());
-//
-//            if (isAuthenticated){
-//                session.setAttribute("user", loginRequest.getUsername());
-//                return ResponseEntity.ok("Login was successful!");
-//            } else {
-//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-//            }
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unknown error occurred");
-//        }
-//    }
+    @GetMapping("/me")
+    public ResponseEntity<UserDTO> getCurrentUser(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user != null) {
+            UserDTO dto = new UserDTO(
+                    user.getId(),
+                    user.getUsername(),
+                    user.getFullName(),
+                    user.getEmail(),
+                    user.getRole().toString()
+            );
+            return ResponseEntity.ok(dto);
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
+        try {
+            boolean isAuthenticated = userService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
+
+            if (isAuthenticated) {
+                User user = userService.getUserByName(loginRequest.getUsername());
+                if (user != null) {
+                    session.setAttribute("user", user);
+
+                    UserDTO userDTO = new UserDTO(
+                            user.getId(),
+                            user.getUsername(),
+                            user.getFullName(),
+                            user.getEmail(),
+                            user.getRole().toString()
+                    );
+
+                    return ResponseEntity.ok(userDTO);
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+                }
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unknown error occurred");
+        }
+    }
 
 
 

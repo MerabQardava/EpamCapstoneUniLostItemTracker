@@ -5,21 +5,30 @@ import ReportPage from "./Pages/ReportPage";
 import ReportUploadPage from "./Pages/ReportUploadPage";
 import NavigationComponent from "./Components/NavigationComponent";
 import RegisterPage from "./Pages/RegisterPage";
+import LoginPage from "./Pages/LoginPage";
+import {AuthProvider} from "./api/AuthContext";
+import ProtectedRoute from "./Pages/ProtectedRoute";
+
 
 
 function App() {
   return (
     <div className="App">
-        <BrowserRouter>
-            <NavigationComponent/>
-            <Routes>
-                <Route path="/" element={<ReportPage/>} />
-                <Route path="/reports" element={<ReportPage/>} />
-                <Route path="/reports/upload" element={<ReportUploadPage/>} />
-                <Route path="/register" element={<RegisterPage/>} />
+            <AuthProvider>
+                <BrowserRouter>
+                    <NavigationComponent/>
+                    <Routes>
 
-            </Routes>
-        </BrowserRouter>
+                        <Route path="/" element={<ProtectedRoute><ReportPage/></ProtectedRoute>} />
+                        <Route path="/reports" element={<ProtectedRoute><ReportPage/></ProtectedRoute>} />
+                        <Route path="/reports/upload" element={<ProtectedRoute><ReportUploadPage/></ProtectedRoute>} />
+                        <Route path="/register" element={<RegisterPage/>} />
+                        <Route path="/login" element={<LoginPage/>} />
+
+                    </Routes>
+                </BrowserRouter>
+            </AuthProvider>
+
 
     </div>
   );
