@@ -9,6 +9,14 @@ export const register = (userData) => {
     });
 };
 
+export const getUserInfo = (username) => {
+    return apiClient.post(`/userinfo`, username, {
+        headers: {
+            'Content-Type': 'text/plain'
+        }
+    });
+}
+
 
 export const login = (userData) => {
     const formData = new URLSearchParams();

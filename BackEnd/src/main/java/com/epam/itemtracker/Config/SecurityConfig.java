@@ -1,5 +1,6 @@
 package com.epam.itemtracker.Config;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -54,13 +55,22 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login", "/register", "/uploads/**").permitAll()
+                        .requestMatchers("/login", "/register","/h2-console/**", "/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginProcessingUrl("/login")
                         .successHandler((request, response, authentication) -> {
-                            response.setStatus(200);
+                            response.setStatus(HttpServletResponse.SC_OK);
+                            response.setContentType("application/json");
+
+                            // Extract the user details
+                            String username = authentication.getName(); // or use authentication.getPrincipal()
+
+                            // Example: send just the username
+                            String jsonResponse = String.format("{\"username\": \"%s\"}", username);
+
+                            response.getWriter().write(jsonResponse);
                         })
                         .failureHandler((request, response, exception) -> {
                             response.setStatus(401);

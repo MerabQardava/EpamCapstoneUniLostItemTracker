@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {uploadReport} from "../api/ReportApiService";
+import {useAuth} from "../api/AuthContext";
 
 const ReportUploadPage = () => {
     const [formData, setFormData] = useState({
@@ -9,6 +10,8 @@ const ReportUploadPage = () => {
         date: '',
         image: null,
     });
+
+    const context = useAuth();
     const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
@@ -23,10 +26,17 @@ const ReportUploadPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!context.userInfo || !context.userInfo.username) {
+            setMessage("⚠️ User info not loaded. Please try again.");
+            return;
+        }
+
         const payload = new FormData();
         Object.entries(formData).forEach(([key, value]) => {
             payload.append(key, value);
         });
+
+        payload.append('user', 45);
 
         try {
             await uploadReport(payload);

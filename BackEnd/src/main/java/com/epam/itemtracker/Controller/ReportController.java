@@ -2,6 +2,7 @@ package com.epam.itemtracker.Controller;
 
 import com.epam.itemtracker.Entity.Report;
 import com.epam.itemtracker.Services.ReportService;
+import com.epam.itemtracker.Services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,11 @@ import java.util.UUID;
 public class ReportController {
 
     private final ReportService reportService;
+    private final UserService userService;
 
-    public ReportController(ReportService reportService) {
+    public ReportController(ReportService reportService,UserService userService) {
         this.reportService = reportService;
+        this.userService=userService;
     }
 
     @PostMapping(value = "/upload", consumes = {"multipart/form-data"})
@@ -29,7 +32,8 @@ public class ReportController {
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("image") MultipartFile imageFile,
-            @RequestParam("location") String location
+            @RequestParam("location") String location,
+            @RequestParam("user") Long userId
     ) {
         try {
             String uploadDir = "uploads/";

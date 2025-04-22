@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import {login} from "../api/AuthApiService";
+import {getUserInfo, login} from "../api/AuthApiService";
 import {useAuth} from "../api/AuthContext";
+import {useNavigate} from "react-router-dom";
 
 const LoginPage = () => {
     const [form, setForm] = useState({ username: '', password: '' });
     const [message, setMessage] = useState('');
-
+    const navigate = useNavigate();
     const context=useAuth();
 
     const handleChange = (e) => {
@@ -18,10 +19,14 @@ const LoginPage = () => {
         try {
 
             const res = await login(form);
+            const info = await getUserInfo(res.data.username);
+            context.setUserInfo(info.data)
 
-            console.log(res);
             context.login();
+            console.log(context.userInfo);
+
             setMessage('✅ Login successful!');
+            navigate("/");
         } catch (err) {
             console.error(err);
 

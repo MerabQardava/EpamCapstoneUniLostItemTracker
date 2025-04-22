@@ -6,6 +6,9 @@ export const getAllReports=()=>{
 
 
 export const uploadReport = async (formData) => {
+    for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+    }
     return apiClient.post(`/reports/upload`, formData, {
         headers: {
             'Content-Type': 'multipart/form-data',

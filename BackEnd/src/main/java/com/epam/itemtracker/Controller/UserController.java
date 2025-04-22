@@ -25,9 +25,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-    @GetMapping("/me")
-    public ResponseEntity<UserDTO> getCurrentUser(HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    @PostMapping("/userinfo")
+    public ResponseEntity<UserDTO> getUserInfo(@RequestBody String username) {
+        User user = userService.getUserByName(username);
         if (user != null) {
             UserDTO dto = new UserDTO(
                     user.getId(),

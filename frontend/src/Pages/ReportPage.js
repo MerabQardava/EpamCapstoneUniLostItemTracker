@@ -8,7 +8,7 @@ function ReportPage(props) {
     useEffect(() => {
         getAllReports().then((reports) => {
             setReportList(reports.data)
-            console.log(reports.data[0])
+            console.log(reports.data)
 
         });
     }, []);
@@ -22,6 +22,7 @@ function ReportPage(props) {
                     location={report.location}
                     date={report.createdAt}
                     imageUrl={report.imageUrl}
+                    status={report.status}
                 />
             ))}
         </div>
