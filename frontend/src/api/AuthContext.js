@@ -21,6 +21,7 @@ export const AuthProvider = ({ children }) => {
         console.log(isAuthenticated);
         sessionStorage.removeItem('isAuthenticated');
         setIsAuthenticated(false);
+        setUserInfo(null)
     };
 
     return (

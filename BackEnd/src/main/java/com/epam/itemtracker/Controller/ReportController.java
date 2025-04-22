@@ -1,8 +1,11 @@
 package com.epam.itemtracker.Controller;
 
+import com.epam.itemtracker.DTOs.ReportDTO;
 import com.epam.itemtracker.Entity.Report;
 import com.epam.itemtracker.Services.ReportService;
 import com.epam.itemtracker.Services.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,7 @@ import java.util.UUID;
 @RequestMapping("/reports")
 public class ReportController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ReportController.class);
     private final ReportService reportService;
     private final UserService userService;
 
@@ -42,15 +46,23 @@ public class ReportController {
             Files.createDirectories(filePath.getParent());
             Files.write(filePath, imageFile.getBytes());
 
-
             String imageUrl = fileName;
 
+            logger.error(String.valueOf(userId));
+
+
+            var optionalUser = userService.getUserById(userId);
+            if (optionalUser.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
 
             Report report = new Report();
             report.setTitle(title);
             report.setDescription(description);
             report.setImageUrl(imageUrl);
             report.setLocation(location);
+            report.setUser(optionalUser.get());
+
             Report saved = reportService.saveReport(report);
 
             return ResponseEntity.ok(saved);
@@ -61,7 +73,19 @@ public class ReportController {
     }
 
     @GetMapping
-    public List<Report> getAllReports() {
-        return reportService.getAllReports();
+    public List<ReportDTO> getAllReports() {
+        List<Report> reports = reportService.getAllReports();
+
+        if (!reports.isEmpty()) {
+            logger.info("Retrieved report: {}", reports.get(0).getTitle());
+        }
+        if (reports.size() > 1) {
+            logger.info("Retrieved report: {}", reports.get(1).getTitle());
+        }
+
+        return reports.stream()
+                .map(ReportDTO::new)
+                .toList();
     }
+
 }

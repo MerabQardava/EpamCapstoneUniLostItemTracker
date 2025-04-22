@@ -1,6 +1,7 @@
 package com.epam.itemtracker.Entity;
 
 import com.epam.itemtracker.Entity.Enums.ReportStatus;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,5 +42,6 @@ public class Report {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 }

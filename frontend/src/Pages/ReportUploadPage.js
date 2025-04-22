@@ -36,7 +36,7 @@ const ReportUploadPage = () => {
             payload.append(key, value);
         });
 
-        payload.append('user', 45);
+        payload.append('user', context.userInfo.id);
 
         try {
             await uploadReport(payload);

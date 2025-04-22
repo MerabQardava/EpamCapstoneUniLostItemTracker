@@ -23,6 +23,7 @@ function ReportPage(props) {
                     date={report.createdAt}
                     imageUrl={report.imageUrl}
                     status={report.status}
+                    username={report.username}
                 />
             ))}
         </div>
