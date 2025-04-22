@@ -21,8 +21,8 @@ const ReportCard = ({id, title, description, location, date, imageUrl, status, u
         }else{
             navigate("/report/claim/lost")
             addNotification({
-                message:`${context.userinfo.username} has found the ${title}`,
-                userId:context.userinfo.id,
+                message:`${context.userInfo.username} has found the ${title}`,
+                userId:context.userInfo.id,
             })
         }
         deleteReports(id).then((e)=>console.log(e)).catch((e)=>console.log(e));

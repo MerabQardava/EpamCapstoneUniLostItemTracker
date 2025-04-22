@@ -33,16 +33,16 @@ export default function NotificationsDropdownComponent({ isLoggedIn }) {
     if (!isLoggedIn) return null;
 
     return (
-        <div className="relative">
+        <div className="relative flex items-center justify-center">
             <button onClick={() => setOpen(!open)} className="relative">
                 <Bell className="w-6 h-6" />
                 {notifications.some(n => !n.read) && (
-                    <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full" />
+                    <span className="absolute top-5 right-0 w-2 h-2 bg-red-500 rounded-full" />
                 )}
             </button>
 
             {open && (
-                <div className="absolute right-0 mt-2 w-80 max-h-96 overflow-auto bg-white shadow-lg rounded-lg p-4 z-50">
+                <div className="absolute right-0 top-full mt-2 w-80 max-h-96 overflow-auto bg-white shadow-lg rounded-lg p-4 z-50">
                     {notifications.length === 0 ? (
                         <div className="text-sm text-gray-500">No notifications</div>
                     ) : (
@@ -75,4 +75,7 @@ export default function NotificationsDropdownComponent({ isLoggedIn }) {
             )}
         </div>
     );
+
+
+
 }
