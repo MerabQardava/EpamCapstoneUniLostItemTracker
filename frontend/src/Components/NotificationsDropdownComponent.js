@@ -10,9 +10,19 @@ export default function NotificationsDropdownComponent({ isLoggedIn }) {
     const { userInfo } = useAuth();
 
     useEffect(() => {
+        let interval;
         if (isLoggedIn && userInfo?.id) {
-            fetchNotifications(userInfo.id).then(setNotifications);
+            const fetchAndUpdate = async () => {
+                const updated = await fetchNotifications(userInfo.id);
+                setNotifications(updated);
+            };
+
+            fetchAndUpdate();
+
+            interval = setInterval(fetchAndUpdate, 5000);
         }
+
+        return () => clearInterval(interval);
     }, [isLoggedIn, userInfo]);
 
     const handleDelete = async (id) => {

@@ -5,27 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f469905-89f9-4eba-b6d2-fc2c375527e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/DTOs/NotificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/NotificationsDropdownComponent.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/NotificationApiService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/ReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/ReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/ReportService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/NavigationComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NavigationComponent.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/ReportCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ReportCard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ConfirmationPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ConfirmationPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ReportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ReportPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/ReportUploadPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ReportUploadPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/reportClaimPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/reportClaimPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/AuthContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/AuthContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ReportApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ReportApiService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/NotificationsDropdownComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/NotificationsDropdownComponent.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
