@@ -8,6 +8,8 @@ import RegisterPage from "./Pages/RegisterPage";
 import LoginPage from "./Pages/LoginPage";
 import {AuthProvider} from "./api/AuthContext";
 import ProtectedRoute from "./Pages/ProtectedRoute";
+import ReportConfirmationPage from "./Pages/ConfirmationPage";
+import ReportClaimPage from "./Pages/reportClaimPage";
 
 
 
@@ -22,6 +24,8 @@ function App() {
                         <Route path="/" element={<ProtectedRoute><ReportPage/></ProtectedRoute>} />
                         <Route path="/reports" element={<ProtectedRoute><ReportPage/></ProtectedRoute>} />
                         <Route path="/reports/upload" element={<ProtectedRoute><ReportUploadPage/></ProtectedRoute>} />
+                        <Route path="/report/confirmation/:status" element={<ProtectedRoute><ReportConfirmationPage/></ProtectedRoute>} />
+                        <Route path="/report/claim/:status" element={<ProtectedRoute><ReportClaimPage/></ProtectedRoute>} />
                         <Route path="/register" element={<RegisterPage/>} />
                         <Route path="/login" element={<LoginPage/>} />
 

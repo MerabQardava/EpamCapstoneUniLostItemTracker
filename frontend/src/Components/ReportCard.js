@@ -1,8 +1,32 @@
 import React from 'react';
 import DirectImageComponent from './DirectImageComponent';
+import {Button} from "react-bootstrap";
+import {Link, useNavigate} from "react-router-dom";
+import {deleteReports} from "../api/ReportApiService";
+import {addNotification} from "../api/NotificationApiService";
+import {useAuth} from "../api/AuthContext";
 
-const ReportCard = ({ title, description, location, date, imageUrl, status, username }) => {
+const ReportCard = ({id, title, description, location, date, imageUrl, status, username }) => {
     const isFound = status === 'FOUND';
+    const navigate = useNavigate();
+    const context = useAuth();
+
+    const onClaim=()=>{
+        if(isFound){
+            navigate("/report/claim/found")
+            addNotification({
+                message:`${context.userInfo.username} has claimed the ${title}`,
+                userId:context.userInfo.id,
+            })
+        }else{
+            navigate("/report/claim/lost")
+            addNotification({
+                message:`${context.userinfo.username} has found the ${title}`,
+                userId:context.userinfo.id,
+            })
+        }
+        deleteReports(id).then((e)=>console.log(e)).catch((e)=>console.log(e));
+    }
 
     return (
         <div className="max-w-sm border-2 m-3 border-indigo-700 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl bg-white transition duration-300 ease-in-out">
@@ -28,12 +52,12 @@ const ReportCard = ({ title, description, location, date, imageUrl, status, user
                             {status}
                         </span>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1">
-                        {username} {isFound ? 'found' : 'lost'} the item
+                    <p className="text-sm  text-gray-600 mt-3">
+                        {username} {isFound ? 'has found' : 'has lost'} the item
                     </p>
                 </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed">{description}</p>
+                <p className="text-gray-600  text-sm leading-relaxed">{description}</p>
 
                 <div className="flex justify-center flex-wrap gap-2 text-xs font-medium text-gray-500">
                     <span className="bg-gray-100 border-2 border-indigo-700 px-3 py-1 rounded-full">
@@ -45,8 +69,8 @@ const ReportCard = ({ title, description, location, date, imageUrl, status, user
                 </div>
 
                 <div className="pt-2 text-center">
-                    <button
-                        className={`mt-2 px-4 py-2 rounded-full font-semibold text-sm shadow-sm ${
+                    <button as={Link} onClick={onClaim}
+                            className={`mt-2 px-4 py-2 rounded-full font-semibold text-sm shadow-sm ${
                             isFound
                                 ? 'bg-green-600 hover:bg-green-700 text-white'
                                 : 'bg-yellow-500 hover:bg-yellow-600 text-white'

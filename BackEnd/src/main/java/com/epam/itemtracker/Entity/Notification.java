@@ -24,7 +24,8 @@ public class Notification {
 
     private String message;
 
-    private boolean read;
+    @Builder.Default
+    private boolean read=false;
 
     @CreationTimestamp
     @Column(updatable = false)

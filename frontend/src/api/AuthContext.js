@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
-import {getUserInfo} from "./AuthApiService";
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext({});
 
@@ -7,10 +6,13 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() => {
-        return sessionStorage.getItem('isAuthenticated') === "true";
+        return sessionStorage.getItem('isAuthenticated') === 'true';
     });
 
-    const [userInfo, setUserInfo] = useState()
+    const [userInfo, setUserInfo] = useState(() => {
+        const stored = sessionStorage.getItem('userInfo');
+        return stored ? JSON.parse(stored) : null;
+    });
 
     const login = () => {
         setIsAuthenticated(true);
@@ -18,14 +20,19 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
-        console.log(isAuthenticated);
-        sessionStorage.removeItem('isAuthenticated');
         setIsAuthenticated(false);
-        setUserInfo(null)
+        sessionStorage.removeItem('isAuthenticated');
+        sessionStorage.removeItem('userInfo');
+        setUserInfo(null);
+    };
+
+    const saveUserInfo = (info) => {
+        sessionStorage.setItem('userInfo', JSON.stringify(info));
+        setUserInfo(info);
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout,setUserInfo,userInfo}}>
+        <AuthContext.Provider value={{ isAuthenticated, login, logout, userInfo, saveUserInfo }}>
             {children}
         </AuthContext.Provider>
     );

@@ -19,6 +19,15 @@ public class ReportService {
         return reportRepository.save(report);
     }
 
+    public boolean deleteReport(long id) {
+        if (reportRepository.existsById(id)) {
+            reportRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public List<Report> getAllReports() {
         return reportRepository.findAll();
     }

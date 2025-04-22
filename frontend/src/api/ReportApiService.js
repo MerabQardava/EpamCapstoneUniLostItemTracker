@@ -4,6 +4,10 @@ export const getAllReports=()=>{
     return apiClient.get(`/reports`)
 }
 
+export const deleteReports=(id)=>{
+    return apiClient.delete(`/reports/`+id)
+}
+
 
 export const uploadReport = async (formData) => {
     for (let [key, value] of formData.entries()) {

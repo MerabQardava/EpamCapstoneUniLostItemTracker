@@ -1,6 +1,7 @@
 package com.epam.itemtracker.Controller;
 
 import com.epam.itemtracker.DTOs.ReportDTO;
+import com.epam.itemtracker.Entity.Enums.ReportStatus;
 import com.epam.itemtracker.Entity.Report;
 import com.epam.itemtracker.Services.ReportService;
 import com.epam.itemtracker.Services.UserService;
@@ -31,13 +32,25 @@ public class ReportController {
         this.userService=userService;
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteReport(@PathVariable long id) {
+        boolean deleted = reportService.deleteReport(id);
+        logger.info("Deletion has been initiated");
+        if (deleted) {
+            return ResponseEntity.ok("Report deleted successfully.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Report not found.");
+        }
+    }
+
     @PostMapping(value = "/upload", consumes = {"multipart/form-data"})
     public ResponseEntity<Report> uploadReport(
             @RequestParam("title") String title,
             @RequestParam("description") String description,
             @RequestParam("image") MultipartFile imageFile,
             @RequestParam("location") String location,
-            @RequestParam("user") Long userId
+            @RequestParam("user") Long userId,
+            @RequestParam("status") String status
     ) {
         try {
             String uploadDir = "uploads/";
@@ -62,6 +75,7 @@ public class ReportController {
             report.setImageUrl(imageUrl);
             report.setLocation(location);
             report.setUser(optionalUser.get());
+            report.setStatus(ReportStatus.valueOf(status));
 
             Report saved = reportService.saveReport(report);
 

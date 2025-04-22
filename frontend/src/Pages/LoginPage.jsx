@@ -20,7 +20,7 @@ const LoginPage = () => {
 
             const res = await login(form);
             const info = await getUserInfo(res.data.username);
-            context.setUserInfo(info.data)
+            context.saveUserInfo(info.data)
 
             context.login();
             console.log(context.userInfo);

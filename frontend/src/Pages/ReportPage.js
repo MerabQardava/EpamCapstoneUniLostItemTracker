@@ -14,8 +14,10 @@ function ReportPage(props) {
     }, []);
     return (
         <div className="flex flex-col items-center">
+            <h1 className="mt-2 text-indigo-700">Reported Items</h1>
             {reportList && reportList.map((report, index) => (
                 <ReportCard
+                    id={report.id}
                     key={index}
                     title={report.title}
                     description={report.description}

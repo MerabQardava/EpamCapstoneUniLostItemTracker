@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import {useAuth} from "../api/AuthContext";
+import NotificationsDropdownComponent from "./NotificationsDropdownComponent";
 
 function NavigationComponent() {
     const {isAuthenticated,logout} = useAuth();
@@ -23,6 +24,7 @@ function NavigationComponent() {
                         <Button as={Link} to="/register" variant="light">Register</Button></>
                     }
                     {isAuthenticated && <Button onClick={logout} variant="light">Logout</Button>}
+                    {isAuthenticated && <NotificationsDropdownComponent isLoggedIn={true} />}
                 </div>
             </Container>
         </Navbar>
