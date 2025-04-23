@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f469905-89f9-4eba-b6d2-fc2c375527e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Entity/AuditLog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Repositories/AuditLogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Services/AuditLogService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BackEnd/src/main/java/com/epam/itemtracker/Controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +87,7 @@
       <workItem from="1745169704076" duration="8393000" />
       <workItem from="1745239599080" duration="13805000" />
       <workItem from="1745361065160" duration="9008000" />
-      <workItem from="1745411450205" duration="2577000" />
+      <workItem from="1745411450205" duration="3765000" />
     </task>
     <servers />
   </component>
