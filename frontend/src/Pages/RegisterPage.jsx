@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {register} from "../api/AuthApiService";
+import {useNavigate} from "react-router-dom";
 
 const RegisterPage = () => {
     const [form, setForm] = useState({
@@ -9,6 +10,8 @@ const RegisterPage = () => {
         confirmPassword: ''
     });
     const [message, setMessage] = useState('');
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -34,6 +37,8 @@ const RegisterPage = () => {
             await register(payload);
             setMessage('✅ Registration successful! You can now log in.');
             setForm({ username: '', email: '', password: '', confirmPassword: '' });
+            navigate("/register/confirmation");
+
         } catch (err) {
             console.error(err);
             setMessage(`❌ ${err.response?.data?.message || 'Registration failed'}`);
