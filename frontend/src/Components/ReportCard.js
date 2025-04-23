@@ -1,35 +1,40 @@
 import React from 'react';
 import DirectImageComponent from './DirectImageComponent';
-import {Button} from "react-bootstrap";
-import {Link, useNavigate} from "react-router-dom";
-import {deleteReports} from "../api/ReportApiService";
-import {addNotification} from "../api/NotificationApiService";
-import {useAuth} from "../api/AuthContext";
+import { useNavigate } from 'react-router-dom';
+import { deleteReports } from "../api/ReportApiService";
+import { addNotification } from "../api/NotificationApiService";
+import { useAuth } from "../api/AuthContext";
 
-const ReportCard = ({id, title, description, location, date, imageUrl, status, username }) => {
+const ReportCard = ({ id, title, description, location, date, imageUrl, status, username, userId }) => {
     const isFound = status === 'FOUND';
     const navigate = useNavigate();
     const context = useAuth();
 
-    const onClaim=()=>{
-        if(isFound){
-            navigate("/report/claim/found")
+
+    const onClaim = () => {
+        if (isFound) {
+            navigate("/report/claim/found");
             addNotification({
-                message:`${context.userInfo.username} has claimed the ${title}`,
-                userId:context.userInfo.id,
-            })
-        }else{
-            navigate("/report/claim/lost")
+                message: `${context.userInfo.username} has claimed the ${title}`,
+                userId: userId,
+            });
+        } else {
+            navigate("/report/claim/lost");
             addNotification({
-                message:`${context.userInfo.username} has found the ${title}`,
-                userId:context.userInfo.id,
-            })
+                message: `${context.userInfo.username} has found the ${title}`,
+                userId: userId,
+            });
         }
-        deleteReports(id).then((e)=>console.log(e)).catch((e)=>console.log(e));
-    }
+        deleteReports(id).then(console.log).catch(console.log);
+    };
+
+    const onDelete = () => {
+        navigate("/report/claim/delete");
+        deleteReports(id);
+    };
 
     return (
-        <div className="max-w-sm border-2 m-3 border-indigo-700 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl bg-white transition duration-300 ease-in-out">
+        <div className="max-w-sm w-full border-2 m-3 border-indigo-700 rounded-3xl overflow-hidden shadow-md hover:shadow-2xl bg-white transition duration-300 ease-in-out">
             {imageUrl && (
                 <DirectImageComponent
                     className="w-full h-52 object-cover rounded-t-3xl"
@@ -40,7 +45,9 @@ const ReportCard = ({id, title, description, location, date, imageUrl, status, u
 
             <div className="p-5 pt-2 pb-4 space-y-3">
                 <div className="text-center">
-                    <h2 className="text-xl font-bold text-indigo-700">{title}</h2>
+                    <h2 className="text-lg font-bold text-indigo-700 break-words whitespace-pre-wrap line-clamp-3">
+                        {title}
+                    </h2>
                     <div className="mt-1">
                         <span
                             className={`text-xs font-bold px-2 py-1 rounded-full ${
@@ -52,32 +59,46 @@ const ReportCard = ({id, title, description, location, date, imageUrl, status, u
                             {status}
                         </span>
                     </div>
-                    <p className="text-sm  text-gray-600 mt-3">
+                    <p className="text-sm text-gray-600 mt-3 break-words whitespace-pre-wrap">
                         {username} {isFound ? 'has found' : 'has lost'} the item
                     </p>
                 </div>
 
-                <p className="text-gray-600  text-sm leading-relaxed">{description}</p>
+                <p className="text-gray-600 text-sm leading-relaxed text-center break-words whitespace-pre-wrap max-h-28 overflow-y-auto">
+                    {description}
+                </p>
 
                 <div className="flex justify-center flex-wrap gap-2 text-xs font-medium text-gray-500">
-                    <span className="bg-gray-100 border-2 border-indigo-700 px-3 py-1 rounded-full">
-                        📍 {location}
-                    </span>
-                    <span className="bg-gray-100 border-2 border-indigo-700 px-3 py-1 rounded-full">
+                    <div className="flex-grow-0 max-w-full">
+                        <span className="inline-block bg-gray-100 border-2 border-indigo-700 px-3 py-1 rounded-full truncate max-w-full" title={location}>
+                            📍 {location.length > 30 ? `${location.substring(0, 27)}...` : location}
+                        </span>
+                    </div>
+                    <span className="bg-gray-100 border-2 border-indigo-700 px-3 py-1 rounded-full shrink-0">
                         🕒 {new Date(date).toLocaleDateString()}
                     </span>
                 </div>
 
                 <div className="pt-2 text-center">
-                    <button as={Link} onClick={onClaim}
+                    {username === context.userInfo.username ? (
+                        <button
+                            onClick={onDelete}
+                            className="mt-2 px-4 py-2 rounded-full font-semibold text-sm shadow-sm bg-red-600 hover:bg-red-700 text-white"
+                        >
+                            Delete your report
+                        </button>
+                    ) : (
+                        <button
+                            onClick={onClaim}
                             className={`mt-2 px-4 py-2 rounded-full font-semibold text-sm shadow-sm ${
-                            isFound
-                                ? 'bg-green-600 hover:bg-green-700 text-white'
-                                : 'bg-yellow-500 hover:bg-yellow-600 text-white'
-                        }`}
-                    >
-                        {isFound ? 'Claim' : 'Report Item'}
-                    </button>
+                                isFound
+                                    ? 'bg-green-600 hover:bg-green-700 text-white'
+                                    : 'bg-yellow-500 hover:bg-yellow-600 text-white'
+                            }`}
+                        >
+                            {isFound ? 'Claim' : 'Report Item'}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

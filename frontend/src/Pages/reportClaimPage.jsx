@@ -11,6 +11,8 @@ const ReportClaimPage = () => {
         message = 'The item has been claimed and user notified.';
     } else if (status?.toUpperCase() === 'LOST') {
         message = 'Thank you for reporting the item, user has been notified';
+    }else if (status?.toUpperCase() === 'DELETE') {
+        message = 'Your report has been deleted successfully.';
     }
 
     return (

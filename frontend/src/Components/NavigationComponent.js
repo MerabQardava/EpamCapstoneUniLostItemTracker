@@ -16,7 +16,6 @@ function NavigationComponent() {
                 <Nav className="me-auto">
                     <Nav.Link as={Link} to="/reports">Home</Nav.Link>
                     <Nav.Link as={Link} to="/reports/upload">Upload</Nav.Link>
-                    <Nav.Link href="#pricing">Pricing</Nav.Link>
                 </Nav>
                 <div className="d-flex  gap-2">
                     {!isAuthenticated && <>

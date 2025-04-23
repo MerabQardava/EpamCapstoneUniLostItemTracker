@@ -17,6 +17,7 @@ public class ReportDTO {
     private String status;
     private String createdAt;
     private String username;
+    private String userId;
 
     public ReportDTO(Report report) {
         this.id = report.getId();
@@ -27,5 +28,6 @@ public class ReportDTO {
         this.status = report.getStatus().toString();
         this.createdAt = report.getCreatedAt().toString();
         this.username = report.getUser().getUsername();
+        this.userId = report.getUser().getId().toString();
     }
 }

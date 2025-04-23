@@ -26,6 +26,7 @@ function ReportPage(props) {
                     imageUrl={report.imageUrl}
                     status={report.status}
                     username={report.username}
+                    userId={report.userId}
                 />
             ))}
         </div>
