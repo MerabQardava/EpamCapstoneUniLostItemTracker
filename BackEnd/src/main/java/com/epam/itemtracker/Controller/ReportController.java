@@ -3,6 +3,7 @@ package com.epam.itemtracker.Controller;
 import com.epam.itemtracker.DTOs.ReportDTO;
 import com.epam.itemtracker.Entity.Enums.ReportStatus;
 import com.epam.itemtracker.Entity.Report;
+import com.epam.itemtracker.Services.AuditLogService;
 import com.epam.itemtracker.Services.ReportService;
 import com.epam.itemtracker.Services.UserService;
 import org.slf4j.Logger;
@@ -27,16 +28,30 @@ public class ReportController {
     private final ReportService reportService;
     private final UserService userService;
 
-    public ReportController(ReportService reportService,UserService userService) {
+    private final AuditLogService auditLogService;
+
+    public ReportController(ReportService reportService,UserService userService, AuditLogService auditLogService) {
         this.reportService = reportService;
         this.userService=userService;
+        this.auditLogService=auditLogService;
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteReport(@PathVariable long id) {
+        var optionalReport = reportService.getReportById(id);
+        if (optionalReport.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Report not found.");
+        }
+
+        Report report = optionalReport.get();
+        String username = report.getUser() != null ? report.getUser().getUsername() : "Unknown User";
+
         boolean deleted = reportService.deleteReport(id);
         logger.info("Deletion has been initiated");
+
         if (deleted) {
+
+            auditLogService.logAction("Report deleted", username);
             return ResponseEntity.ok("Report deleted successfully.");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Report not found.");
@@ -78,6 +93,8 @@ public class ReportController {
             report.setStatus(ReportStatus.valueOf(status));
 
             Report saved = reportService.saveReport(report);
+
+            auditLogService.logAction("Report created", optionalUser.get().getUsername());
 
             return ResponseEntity.ok(saved);
 

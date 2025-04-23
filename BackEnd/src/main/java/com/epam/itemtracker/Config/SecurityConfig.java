@@ -1,6 +1,10 @@
 package com.epam.itemtracker.Config;
 
+import com.epam.itemtracker.Controller.ReportController;
+import com.epam.itemtracker.Services.AuditLogService;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +36,9 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+    private static final Logger logger = LoggerFactory.getLogger(SecurityConfig.class);
+
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -47,7 +54,8 @@ public class SecurityConfig {
 //                )
 //                .build();
 //    }
-
+    @Autowired
+    private AuditLogService auditLogService;
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -61,15 +69,13 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginProcessingUrl("/login")
                         .successHandler((request, response, authentication) -> {
+                            String username = authentication.getName();
+                            auditLogService.logAction("User has logged in", username);
+
                             response.setStatus(HttpServletResponse.SC_OK);
                             response.setContentType("application/json");
 
-                            // Extract the user details
-                            String username = authentication.getName(); // or use authentication.getPrincipal()
-
-                            // Example: send just the username
                             String jsonResponse = String.format("{\"username\": \"%s\"}", username);
-
                             response.getWriter().write(jsonResponse);
                         })
                         .failureHandler((request, response, exception) -> {
@@ -82,6 +88,9 @@ public class SecurityConfig {
                         .clearAuthentication(true)
                         .invalidateHttpSession(true)
                         .logoutSuccessHandler((request, response, authentication) -> {
+                            String username = (authentication != null) ? authentication.getName() : "Unknown User";
+                            auditLogService.logAction("User has logged out", username);
+
                             response.setStatus(200);
                         })
                 )
@@ -91,6 +100,8 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .build();
     }
+
+
 
     @Bean
     public AuthenticationProvider authenticationProvider(){
