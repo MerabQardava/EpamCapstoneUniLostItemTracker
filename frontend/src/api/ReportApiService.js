@@ -19,5 +19,11 @@ export const uploadReport = async (formData) => {
         },
 
     });
+
+
+};
+
+export const updateReport = (id, updatedReport) => {
+    return apiClient.put(`/reports/${id}`, updatedReport);
 };
 

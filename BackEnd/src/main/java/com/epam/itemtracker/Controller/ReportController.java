@@ -102,4 +102,22 @@ public class ReportController {
                 .toList();
     }
 
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ReportDTO> updateReport(@PathVariable Long id, @RequestBody ReportDTO reportDTO) {
+        var optionalReport = reportService.getReportById(id);
+        if (optionalReport.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        Report report = optionalReport.get();
+        report.setTitle(reportDTO.getTitle());
+        report.setDescription(reportDTO.getDescription());
+        report.setLocation(reportDTO.getLocation());
+        report.setStatus(ReportStatus.valueOf(reportDTO.getStatus()));
+
+        Report updated = reportService.saveReport(report);
+        return ResponseEntity.ok(new ReportDTO(updated));
+    }
+
 }

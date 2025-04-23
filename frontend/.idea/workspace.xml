@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6f469905-89f9-4eba-b6d2-fc2c375527e2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Pages/RegisterConfirmationPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/EditReportModal.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/RegisterPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/ReportCard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/ReportCard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pages/ReportPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pages/ReportPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/ReportApiService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ReportApiService.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.npm start.executor": "Run",
-    "ts.external.directory.path": "D:\\WebStorm 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "ts.external.directory.path": "F:\\Intellij\\WebStorm 2025.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -90,6 +91,7 @@
       <workItem from="1745169704076" duration="8393000" />
       <workItem from="1745239599080" duration="13805000" />
       <workItem from="1745361065160" duration="9008000" />
+      <workItem from="1745411450205" duration="1386000" />
     </task>
     <servers />
   </component>

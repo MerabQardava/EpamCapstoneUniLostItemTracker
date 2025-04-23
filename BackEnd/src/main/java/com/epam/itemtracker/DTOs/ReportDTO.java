@@ -3,11 +3,13 @@ package com.epam.itemtracker.DTOs;
 import com.epam.itemtracker.Entity.Report;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @AllArgsConstructor
 @Setter
+@NoArgsConstructor
 public class ReportDTO {
     private Long id;
     private String title;

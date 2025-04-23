@@ -12,6 +12,14 @@ function ReportPage(props) {
 
         });
     }, []);
+
+    if(reportList?.length === 0){
+        return (<>
+            <h1 className="mt-2 text-indigo-700">Reported Items</h1>
+            <h2 className="mt-4">Sorry, There are currently no active reports, Please Check later</h2>
+        </>)
+    }
+
     return (
         <div className="flex flex-col items-center">
             <h1 className="mt-2 text-indigo-700">Reported Items</h1>
